@@ -1,0 +1,62 @@
+{% extends 'layout/base.html' %}
+{% load widget_tweaks meta %}
+
+{% block meta %}{% meta_tags title='Registro' %}{% endblock %}
+
+{% block content %}
+<section class="user registrationForm">
+    <form id="registration-form" action="" method="post">
+        {% csrf_token %}
+        <div class="formGroup">
+            {{ form.email.label_tag }}
+            {% render_field form.email %}
+            {{ form.email.errors }}
+        </div>
+        <div class="formGroup">
+            {{ form.first_name.label_tag }}
+            {% render_field form.first_name %}
+            {{ form.first_name.errors }}
+        </div>
+        <div class="formGroup">
+            {{ form.last_name.label_tag }}
+            {% render_field form.last_name %}
+            {{ form.last_name.errors }}
+        </div>
+        <div class="formGroup">
+            {{ form.password1.label_tag }}
+            {% render_field form.password1 %}
+            {{ form.password1.errors }}
+            <div class="helptext">{{ form.password1.help_text|safe }}</div>
+        </div>
+        <div class="formGroup">
+            {{ form.password2.label_tag }}
+            {% render_field form.password2 %}
+            {{ form.password2.errors }}
+            <div class="helptext">{{ form.password2.help_text|safe }}</div>
+        </div>
+        <div class="formGroup">
+            <p>Al registrarte aceptas nuestra <a href="#" target="_blank">política de privacidad</a> y los <a href="#" target="_blank">términos y condiciones</a>.</p>
+        </div>
+        <div class="actions">
+            {{ form.next }}
+            <button type="submit">Finalizar registro</button>
+            <a href="{% url 'registration:login' %}{% if request.GET %}?{{ request.GET.urlencode }}{% endif %}" class="link">Si ya estas registrado haz click aquí</a>
+        </div>
+    </form>
+</section>
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+$(function() {
+    $('#registration-form').validate({
+        rules: {
+            password2: {
+                minlength: 8,
+                equalTo: '#id_password1'
+            }
+        }
+    });
+});
+</script>
+{% endblock %}

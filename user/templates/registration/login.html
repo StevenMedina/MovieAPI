@@ -1,0 +1,35 @@
+{% extends 'layout/base.html' %}
+{% load widget_tweaks meta %}
+
+{% block meta %}{% meta_tags title='Ingresar' %}{% endblock %}
+
+{% block content %}
+<section class="user login">
+    <form action="" method="post">
+        {% csrf_token %}
+    {% if form.non_field_errors %}
+        <div class="formGroup">
+            {{ form.non_field_errors }}
+        </div>
+    {% endif %}
+        <div class="formGroup">
+            {{ form.username.label_tag }}
+            {{ form.username }}
+            {{ form.username.errors }}
+        </div>
+        <div class="formGroup">
+            {{ form.password.label_tag }}
+            {{ form.password }}
+            {{ form.password.errors }}
+        </div>
+        <div class="actions">
+            <button type="submit">Ingresar</button>
+            <small><a href="{% url 'registration:password_reset' %}">Olvidé mi contraseña</a></small>
+        </div>
+    </form>
+    <div class="secondAction">
+        <h3 class="title">¿Aún no tienes cuenta?</h3>
+        <a href="{% url 'registration:register' %}{% if next %}?next={{ next }}{% endif %}">Regístrate</a>
+    </div>
+</section>
+{% endblock %}

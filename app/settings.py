@@ -31,16 +31,22 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 PROJECT_APPS = [
+    'app',
     'user',
 ]
 
 INSTALLED_APPS = PROJECT_APPS + [
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.humanize',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'debug_toolbar',
+    'django_extensions',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -84,7 +90,7 @@ DATABASES = {
     }
 }
 
-LANGUAGE_CODE = 'es-co'
+LANGUAGE_CODE = 'es-pe'
 
 TIME_ZONE = 'America/Bogota'
 
@@ -118,6 +124,7 @@ LOGOUT_REDIRECT_URL = 'home'
 
 DATETIME_FORMAT = r'j \d\e F \d\e Y \a \l\a\s f a'
 
+BASE_URL = 'https://example.com'
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators

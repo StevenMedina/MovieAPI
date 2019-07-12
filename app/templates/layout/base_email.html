@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style type="text/css">
+
+    </style>
+</head>
+<body style="background-color: #ffffff; font-family: Verdana, Helvetica, sans-serif; color: #4a4a4a; font-size: 16px;">
+    <table style="max-width: 600px; width: 100%; margin: auto;">
+        <tr style="width: 100%;">
+            <td style="background-color: #ebebeb; background-image: linear-gradient(#fff , #ebebeb); box-sizing: border-box; padding: 4px; color: #4a4a4a;">
+                <div style="background-color: #fff; padding: 26px;">
+                {% block content %}{% endblock %}
+                </div>
+            </td>
+        </tr>
+        {% block extra_content %}{% endblock %}
+        <tr style="text-align: center; font-size: 12px; font-weight: 700;">
+            <td style="padding-bottom: 40px;">
+                <a href="{{ BASE_URL }}" target="_blank" style="color: #1A4772; text-decoration: none;">{{ BASE_URL }}</a>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
