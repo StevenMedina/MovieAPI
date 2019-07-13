@@ -28,3 +28,4 @@ django-redis==4.10.0
 django-widget-tweaks==1.4.3
 pytest-django==3.5.0
 djangorestframework==3.9.4
+django-cors-headers==3.0.2
