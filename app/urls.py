@@ -5,6 +5,8 @@ from django.urls import include
 from django.urls import path
 from django.views.generic.base import TemplateView
 
+from movie.api import router
+
 
 admin_str = 'Administración Omnibnk'
 admin.site.site_header = admin_str
@@ -27,6 +29,11 @@ urlpatterns = [
     path(
         'perfil/',
         include('user.urls_registration', namespace='registration')
+    ),
+
+    path(
+        'api/',
+        include(router.urls),
     ),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

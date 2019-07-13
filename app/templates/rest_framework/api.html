@@ -1,0 +1,11 @@
+{% extends "rest_framework/base.html" %}
+{% load i18n %}
+
+{% block branding %}
+    <a class="navbar-brand" rel="nofollow" href="/">
+        {% trans 'Home' %}
+    </a>
+    <a class="navbar-brand" rel="nofollow">
+        {% trans 'Omnibnk API' %}
+    </a>
+{% endblock %}
