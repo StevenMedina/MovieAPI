@@ -1,47 +1,68 @@
 {% extends 'layout/base.html' %}
-{% load widget_tweaks meta %}
+{% load widget_tweaks %}
 
-{% block meta %}{% meta_tags title='Registro' %}{% endblock %}
+{% block title %}Registro{% endblock %}
 
 {% block content %}
 <section class="user registrationForm">
     <form id="registration-form" action="" method="post">
         {% csrf_token %}
-        <div class="formGroup">
-            {{ form.email.label_tag }}
-            {% render_field form.email %}
-            {{ form.email.errors }}
-        </div>
-        <div class="formGroup">
-            {{ form.first_name.label_tag }}
-            {% render_field form.first_name %}
-            {{ form.first_name.errors }}
-        </div>
-        <div class="formGroup">
-            {{ form.last_name.label_tag }}
-            {% render_field form.last_name %}
-            {{ form.last_name.errors }}
-        </div>
-        <div class="formGroup">
-            {{ form.password1.label_tag }}
-            {% render_field form.password1 %}
-            {{ form.password1.errors }}
-            <div class="helptext">{{ form.password1.help_text|safe }}</div>
-        </div>
-        <div class="formGroup">
-            {{ form.password2.label_tag }}
-            {% render_field form.password2 %}
-            {{ form.password2.errors }}
-            <div class="helptext">{{ form.password2.help_text|safe }}</div>
-        </div>
-        <div class="formGroup">
-            <p>Al registrarte aceptas nuestra <a href="#" target="_blank">política de privacidad</a> y los <a href="#" target="_blank">términos y condiciones</a>.</p>
-        </div>
-        <div class="actions">
-            {{ form.next }}
-            <button type="submit">Finalizar registro</button>
-            <a href="{% url 'registration:login' %}{% if request.GET %}?{{ request.GET.urlencode }}{% endif %}" class="link">Si ya estas registrado haz click aquí</a>
-        </div>
+        <section class="hero is-link is-fullheight">
+            <div class="hero-body">
+                <div class="container has-text-centered">
+                    <div class="column is-6 is-offset-3">
+                        <h3 class="title has-text-white">Registro</h3>
+                        <p class="subtitle has-text-white"><small>Registrate y haz parte de la mejor aplicación de peliculas.</small></p>
+                        <div class="box">
+                            <div class="field">
+                                <div class="control">
+                                    <small>{{ form.email.label_tag }}</small>
+                                    {% render_field form.email class+="input is-large" %}
+                                    {{ form.email.errors }}
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                    <small>{{ form.first_name.label_tag }}</small>
+                                    {% render_field form.first_name class+="input is-large" %}
+                                    {{ form.first_name.errors }}
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                    <small>{{ form.last_name.label_tag }}</small>
+                                    {% render_field form.last_name class+="input is-large" %}
+                                    {{ form.last_name.errors }}
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                    <small>{{ form.password1.label_tag }}</small>
+                                    {% render_field form.password1 class+="input is-large" %}
+                                    {{ form.password1.errors }}
+                                    <div class="helptext"><small>{{ form.password1.help_text|safe }}</small></div>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                    <small>{{ form.password2.label_tag }}</small>
+                                    {% render_field form.password2 class+="input is-large" %}
+                                    {{ form.password2.errors }}
+                                    <div class="helptext"><small>{{ form.password2.help_text|safe }}</small></div>
+                                </div>
+                            </div>
+                            <div class="actions">
+                                {{ form.next }}
+                                <button class="button is-block is-primary is-large is-fullwidth" type="submit"><small>Finalizar registro</small></button>
+                            </div>
+                        </div>
+                        <p class="has-text-white">
+                            <a href="{% url 'registration:login' %}{% if request.GET %}?{{ request.GET.urlencode }}{% endif %}" class="link">Si ya estas registrado haz click aquí</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </form>
 </section>
 {% endblock %}

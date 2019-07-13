@@ -10,44 +10,12 @@
         <meta name="apple-mobile-web-app-title" content="Omnibnk">
         <link rel="apple-touch-icon-precomposed" href="{% static 'img/apple-touch-icon.png' %}">
         <link rel="icon" href="{% static 'img/favicon.png' %}">
-
-        {# https://support.google.com/optimize/answer/7100284 #}
-        <style>.async-hide { opacity: 0 !important} </style>
-        <script>(function(a,s,y,n,c,h,i,d,e){s.className+=' '+y;h.start=1*new Date;
-        h.end=i=function(){s.className=s.className.replace(RegExp(' ?'+y),'')};
-        (a[n]=a[n]||[]).hide=h;setTimeout(function(){i();h.end=null},c);h.timeout=c;
-        })(window,document.documentElement,'async-hide','dataLayer',4000,
-        {'{{ GOOGLE_OPTIMIZE_CONTAINER_ID }}':true});</script>
-
-        <script async src="https://www.googletagmanager.com/gtag/js?id={{ GOOGLE_ANALYTICS_TRACKING_ID }}"></script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-
-          gtag('config', '{{ GOOGLE_ANALYTICS_TRACKING_ID }}', { 'optimize_id': '{{ GOOGLE_OPTIMIZE_CONTAINER_ID }}'});
-        </script>
-
-        <script>
-        (function(h,o,t,j,a,r){
-            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-            h._hjSettings={hjid:{{ HOTJAR_SITE_ID }},hjsv:6};
-            a=o.getElementsByTagName('head')[0];
-            r=o.createElement('script');r.async=1;
-            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-            a.appendChild(r);
-        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-        </script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
     </head>
     <body{% block body_attrs %}{% endblock %}>
-        <!--
-                         _
-             /\         (_)
-            /  \   __  ___  __ _  ___ ___  _ __ ___
-           / /\ \  \ \/ / |/ _` |/ __/ _ \| '__/ _ \
-          / ____ \  >  <| | (_| | (_| (_) | | |  __/
-         /_/    \_\/_/\_\_|\__,_|\___\___/|_|  \___|
-          -->
+
+    {% include 'layout/_menu.html' %}
+
     {% block body %}
         <section>{% block content %}{% endblock %}</section>
     {% endblock body %}
@@ -56,11 +24,11 @@
     </script>
     {% block js_globals %}{% endblock %}
 
-    <script src="{% static 'node_modules/intersection-observer/intersection-observer.js' %}"></script>
-    <script src="{% static 'node_modules/jquery/dist/jquery.js' %}"></script>
-    <script src="{% static 'node_modules/jquery-validation/dist/jquery.validate.js' %}"></script>
-    <script src="{% static 'node_modules/jquery-validation/dist/additional-methods.js' %}"></script>
-    <script src="{% static 'node_modules/jquery-validation/dist/localization/messages_es.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollama/2.0.0/scrollama.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/localization/messages_es.min.js"></script>
     <script src="{% static 'js/main.js' %}"></script>
     {% block js %}{% endblock %}
     </body>

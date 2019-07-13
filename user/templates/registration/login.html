@@ -1,35 +1,60 @@
 {% extends 'layout/base.html' %}
-{% load widget_tweaks meta %}
+{% load widget_tweaks %}
 
-{% block meta %}{% meta_tags title='Ingresar' %}{% endblock %}
+{% block title %}Ingresar{% endblock %}
 
 {% block content %}
 <section class="user login">
-    <form action="" method="post">
+    <form id="login-form" action="" method="post">
         {% csrf_token %}
     {% if form.non_field_errors %}
         <div class="formGroup">
             {{ form.non_field_errors }}
         </div>
     {% endif %}
-        <div class="formGroup">
-            {{ form.username.label_tag }}
-            {{ form.username }}
-            {{ form.username.errors }}
+    <section class="hero is-link is-fullheight">
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <div class="column is-6 is-offset-3">
+                    <h3 class="title has-text-white">Ingreso</h3>
+                    <div class="box">
+                        <div class="field">
+                            <div class="control">
+                                <small>{{ form.username.label_tag }}</small>
+                                {% render_field form.username class+="input is-large" %}
+                                {{ form.username.errors }}
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="control">
+                                <small>{{ form.password.label_tag }}</small>
+                                {% render_field form.password class+="input is-large" %}
+                                {{ form.password.errors }}
+                            </div>
+                        </div>
+                        <div class="actions">
+                            </div><button class="button is-block is-primary is-large is-fullwidth" type="submit">Ingresar</button>
+                        </div>
+                    </div>
+                    <p class="has-text-white">
+                        ¿Aún no tienes cuenta?
+                        <a href="{% url 'registration:register' %}{% if next %}?next={{ next }}{% endif %}">Regístrate</a>
+                    </p>
+                    <p class="has-text-white">
+                        <a href="{% url 'registration:password_reset' %}">Olvidé mi contraseña</a>
+                    </p>
+                </div>
+            </div>
         </div>
-        <div class="formGroup">
-            {{ form.password.label_tag }}
-            {{ form.password }}
-            {{ form.password.errors }}
-        </div>
-        <div class="actions">
-            <button type="submit">Ingresar</button>
-            <small><a href="{% url 'registration:password_reset' %}">Olvidé mi contraseña</a></small>
-        </div>
+    </section>
     </form>
-    <div class="secondAction">
-        <h3 class="title">¿Aún no tienes cuenta?</h3>
-        <a href="{% url 'registration:register' %}{% if next %}?next={{ next }}{% endif %}">Regístrate</a>
-    </div>
 </section>
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+$(function() {
+    $('#login-form').validate();
+});
+</script>
 {% endblock %}
