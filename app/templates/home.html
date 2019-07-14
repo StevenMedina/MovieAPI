@@ -39,9 +39,25 @@
                             <p><strong>Activo:</strong> {{ item.is_active|yesno:'Si,No' }}</p>
                             <p><strong>Recomendado:</strong> {{ item.is_recommended|yesno:'Si,No' }}</p>
 
-                            <a href="{% url 'movie:detail' item.pk %}" class="button is-link">Ver detalle</a>
-                            <a href="{% url 'movie:update' item.pk %}" class="button is-warning">Actualizar</a>
-                            <a class="button is-danger">Eliminar</a>
+                            <div class="field">
+                                <div class="control">
+                                    <a href="{% url 'movie:detail' item.pk %}" class="button is-link">Ver detalle</a>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                    <a href="{% url 'movie:update' item.pk %}" class="button is-warning">Actualizar</a>
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <div class="control">
+                                    <form action="{% url 'movie:delete' item.pk %}" method="post">
+                                        {% csrf_token %}
+                                        <button class="button is-danger" onclick="return confirm('Estas seguro de eliminarlo?')" type="submit">Eliminar</button>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </article>

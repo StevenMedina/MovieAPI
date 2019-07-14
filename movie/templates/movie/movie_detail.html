@@ -1,8 +1,47 @@
 {% extends 'layout/base.html' %}
-{% load static humanize l10n %}
+{% load widget_tweaks %}
 
 {% block title %}{{ object.name }}{% endblock %}
 
 {% block content %}
-dasdasdas
+<section class="user registrationForm">
+    <form id="movie-form" action="" method="post">
+        {% csrf_token %}
+        <section class="hero is-link">
+            <div class="hero-body">
+                <div class="container has-text-centered">
+                    <div class="column is-6 is-offset-3">
+                        <h3 class="title has-text-white">{{ object.name }}</h3>
+                        <div class="card">
+                            <div class="card-image">
+                                <figure class="image is-4by3">
+                                    <img src="https://picsum.photos/id/398/1280/960" alt="{{ object.name }}">
+                                </figure>
+                            </div>
+                            <div class="card-content">
+                                <div class="media">
+                                    <div class="media-left">
+                                        <figure class="image is-48x48">
+                                            <img src="https://robohash.org/{{ object.name }}" alt="{{ object.name }}">
+                                        </figure>
+                                    </div>
+                                    <div class="media-content">
+                                        <p><strong>Activo:</strong> {{ item.is_active|yesno:'Si,No' }}</p>
+                                        <p><strong>Recomendado:</strong> {{ item.is_recommended|yesno:'Si,No' }}</p>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <p class="title is-4 has-text-black">{{ object.name }}</p>
+                                    <p class="subtitle is-4 has-text-black">{{ object.description }}</p>
+                                    <p class="subtitle is-6 has-text-black">{{ object.summary }}</p>
+                                    <time>{{ object.created_at }}</time>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </form>
+</section>
 {% endblock %}

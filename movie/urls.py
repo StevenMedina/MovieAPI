@@ -22,4 +22,10 @@ urlpatterns = [
         views.MovieUpdateView.as_view(),
         name='update',
     ),
+
+    path(
+        'eliminar/<int:pk>/',
+        views.MovieDeleteView.as_view(),
+        name='delete',
+    ),
 ]
