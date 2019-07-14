@@ -7,6 +7,8 @@ from django.views.generic.base import TemplateView
 
 from movie.api import router
 
+from . import views
+
 
 admin_str = 'Administración Omnibnk'
 admin.site.site_header = admin_str
@@ -22,7 +24,7 @@ urlpatterns = [
 
     path(
         '',
-        TemplateView.as_view(template_name='home.html'),
+        views.HomeView.as_view(),
         name='home',
     ),
 
@@ -34,6 +36,11 @@ urlpatterns = [
     path(
         'api/',
         include(router.urls),
+    ),
+
+    path(
+        'peliculas/',
+        include('movie.urls', namespace='movie')
     ),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

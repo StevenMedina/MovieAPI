@@ -38,10 +38,10 @@
                     </div>
                     <p class="has-text-white">
                         ¿Aún no tienes cuenta?
-                        <a href="{% url 'registration:register' %}{% if next %}?next={{ next }}{% endif %}">Regístrate</a>
+                        <a class="has-text-white" href="{% url 'registration:register' %}{% if next %}?next={{ next }}{% endif %}">Regístrate</a>
                     </p>
                     <p class="has-text-white">
-                        <a href="{% url 'registration:password_reset' %}">Olvidé mi contraseña</a>
+                        <a class="has-text-white" href="{% url 'registration:password_reset' %}">Olvidé mi contraseña</a>
                     </p>
                 </div>
             </div>

@@ -1,10 +1,51 @@
 {% extends 'layout/base.html' %}
 {% load static humanize meta %}
 
-{% block meta %}{% meta_tags title='TODO' %}{% endblock %}
+{% block meta %}{% meta_tags title='MoviePlus' %}{% endblock %}
 
 {% block content %}
-<section class="home">
-    <h1>Home</h1>
+<section class="hero is-medium is-primary is-bold">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">Omnibnk APP</h1>
+            <h2 class="subtitle">MoviePlus</h2>
+        </div>
+    </div>
+</section>
+<hr>
+<section>
+    <div class="container">
+        {% if user.is_authenticated %}
+
+            {% include 'layout/_tab.html' with is_movie=True %}
+
+            <div class="buttons">
+                <a class="button is-primary">Crear pelicula</a>
+            </div>
+
+            {% for item in object_list %}
+            <div class="box">
+                <article class="media">
+                    <div class="media-left">
+                        <figure class="image is-64x64">
+                            <img src="https://robohash.org/{{ item.name }}" alt="{{ item.name }}">
+                        </figure>
+                    </div>
+                    <div class="media-content">
+                        <div class="content">
+                            <p><strong>{{ item.name }}</strong> <small>{{ item.created_at }}</small></p>
+                            <p><small>{{ item.summary }}</small></p>
+                            <p>{{ item.description }}</p>
+                            <a href="{% url 'movie:detail' item.pk %}" class="button is-link">Ver detalle</a>
+                            <a class="button is-warning">Actualizar</a>
+                            <a class="button is-danger">Eliminar</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+    <hr>
 </section>
 {% endblock %}
