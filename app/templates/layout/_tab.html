@@ -1,6 +1,6 @@
 <div class="tabs">
     <ul>
-        <li class="{% if is_movie %}is-active{% endif %}"><a>Peliculas</a></li>
-        <li class="{% if is_recommended %}is-active{% endif %}"><a>Recomendadas</a></li>
+        <li class="{% if not request.GET.is_recommended %}is-active{% endif %}"><a href="{% url 'home' %}">Peliculas</a></li>
+        <li class="{% if request.GET.is_recommended %}is-active{% endif %}"><a href="{% url 'home' %}?is_recommended">Recomendadas</a></li>
     </ul>
 </div>

@@ -17,10 +17,10 @@
     <div class="container">
         {% if user.is_authenticated %}
 
-            {% include 'layout/_tab.html' with is_movie=True %}
+            {% include 'layout/_tab.html' %}
 
             <div class="buttons">
-                <a class="button is-primary">Crear pelicula</a>
+                <a href="{% url 'movie:create' %}" class="button is-primary">Crear pelicula</a>
             </div>
 
             {% for item in object_list %}
@@ -34,11 +34,24 @@
                     <div class="media-content">
                         <div class="content">
                             <p><strong>{{ item.name }}</strong> <small>{{ item.created_at }}</small></p>
-                            <p><small>{{ item.summary }}</small></p>
-                            <p>{{ item.description }}</p>
+                            <p><small><strong>Resumen:</strong> {{ item.summary }}</small></p>
+                            <p><strong>Descripción:</strong> {{ item.description }}</p>
+                            <p><strong>Activo:</strong> {{ item.is_active|yesno:'Si,No' }}</p>
+                            <p><strong>Recomendado:</strong> {{ item.is_recommended|yesno:'Si,No' }}</p>
+
                             <a href="{% url 'movie:detail' item.pk %}" class="button is-link">Ver detalle</a>
-                            <a class="button is-warning">Actualizar</a>
+                            <a href="{% url 'movie:update' item.pk %}" class="button is-warning">Actualizar</a>
                             <a class="button is-danger">Eliminar</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            {% empty %}
+            <div class="box">
+                <article class="media">
+                    <div class="media-content">
+                        <div class="content">
+                            No hay peliculas relacionadas
                         </div>
                     </div>
                 </article>

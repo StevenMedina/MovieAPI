@@ -1,0 +1,73 @@
+{% extends 'layout/base.html' %}
+{% load widget_tweaks %}
+
+{% block title %}{{ object.name }}{% endblock %}
+
+{% block content %}
+<section class="user registrationForm">
+    <form id="movie-form" action="" method="post">
+        {% csrf_token %}
+        <section class="hero is-danger is-fullheight">
+            <div class="hero-body">
+                <div class="container has-text-centered">
+                    <div class="column is-6 is-offset-3">
+                        <h3 class="title has-text-white">Actualizar pelicula</h3>
+                        <div class="box">
+                            <div class="field">
+                                <div class="control">
+                                    <small>{{ form.name.label_tag }}</small>
+                                    {% render_field form.name class+="input is-large" %}
+                                    {{ form.name.errors }}
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                    <small>{{ form.description.label_tag }}</small>
+                                    {% render_field form.description class+="input is-large" %}
+                                    {{ form.description.errors }}
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                    <small>{{ form.summary.label_tag }}</small>
+                                    {% render_field form.summary class+="input is-large" %}
+                                    {{ form.summary.errors }}
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                    <label class="checkbox">
+                                        {% render_field form.is_active %}
+                                        <p>Activo</p>
+                                        {{ form.is_active.errors }}
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                    <label class="checkbox">
+                                        {% render_field form.is_recommended %}
+                                        <p>Recomendado</p>
+                                        {{ form.is_recommended.errors }}
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="actions">
+                                <button class="button is-block is-primary is-large is-fullwidth" type="submit"><small>Actualizar</small></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </form>
+</section>
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+$(function() {
+    $('#movie-form').validate();
+});
+</script>
+{% endblock %}

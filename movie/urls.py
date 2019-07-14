@@ -6,8 +6,20 @@ from . import views
 app_name = 'movie'
 urlpatterns = [
     path(
-        '<int:pk>/',
+        'crear/',
+        views.MovieCreateView.as_view(),
+        name='create',
+    ),
+
+    path(
+        'detalle/<int:pk>/',
         views.MovieDetailView.as_view(),
         name='detail',
+    ),
+
+    path(
+        'actualizar/<int:pk>/',
+        views.MovieUpdateView.as_view(),
+        name='update',
     ),
 ]

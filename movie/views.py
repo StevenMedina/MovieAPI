@@ -1,8 +1,9 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404
-from django.views.generic import DetailView
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, DetailView, UpdateView
 
-from . import models
+from . import forms, models
 
 
 class MovieDetailView(LoginRequiredMixin, DetailView):
@@ -14,3 +15,17 @@ class MovieDetailView(LoginRequiredMixin, DetailView):
             pk=self.kwargs['pk'],
             is_active=True,
         )
+
+
+class MovieCreateView(LoginRequiredMixin, CreateView):
+    model = models.Movie
+    form_class = forms.MovieForm
+    template_name = 'movie/movie_create.html'
+    success_url = reverse_lazy('home')
+
+
+class MovieUpdateView(LoginRequiredMixin, UpdateView):
+    model = models.Movie
+    form_class = forms.MovieForm
+    template_name = 'movie/movie_update.html'
+    success_url = reverse_lazy('home')
